@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  tempo:
+    image: grafana/tempo:latest
+    container_name: tempo
+    ports:
+      - "4317:4317" # OpenTelemetry 수집용 gRPC 포트
+      - "3100:3100" # Grafana Tempo HTTP API
+    volumes:
+      - ./tempo-data:/var/lib/tempo

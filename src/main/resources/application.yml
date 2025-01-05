@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:trdb
     driver-class-name: org.h2.Driver
     username: sa
     password:
@@ -14,3 +14,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+management:
+  tracing:
+    enabled: true
+
+  application:
+    name: tr-service
+  opentelemetry:
+    tracing:
+      enabled: true
+      exporter:
+        otlp:
+          endpoint: http://localhost:4317 # Grafana Tempo가 수신하는 OpenTelemetry 포트
