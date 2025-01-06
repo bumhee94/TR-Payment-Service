@@ -50,9 +50,9 @@ public class CardService {
 
             // Card 엔티티 생성 및 저장
             Card card = new Card();
-            card.setCardNumber(encryptCardNumber); //암호화된 카드번호 저장 (업무 요구사항2)
+            card.setCardNumber(encryptCardNumber); //암호화된 카드번호 저장 (업무 요구사항2) // unique
             card.setUserId(userId);
-            card.setRefId(refId); //TSP에서 넘어온 참조아이디
+            card.setRefId(refId); //TSP에서 넘어온 참조아이디 // unique
 
             cardRepository.save(card);
 

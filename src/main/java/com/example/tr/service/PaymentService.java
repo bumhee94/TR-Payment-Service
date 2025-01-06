@@ -2,6 +2,7 @@ package com.example.tr.service;
 
 import com.example.tr.dto.PaymentRequest;
 import com.example.tr.dto.PaymentResponse;
+import com.example.tr.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -11,8 +12,16 @@ public class PaymentService {
 
     @Autowired
     private ExternalApiService externalApiService;
+    @Autowired
+    private CardRepository cardRepository;
 
     public PaymentResponse processPayment(PaymentRequest request) {
+
+        // 1. refId 유효성 검증
+        if (!cardRepository.existsByRefId(request.getRefId())) {
+            throw new RuntimeException("유효하지 않은 refId입니다: " + request.getRefId());
+        }
+
         // 1. TSP로 토큰 요청
         String tokenValue = externalApiService.postToTspToken(request.getRefId());
 

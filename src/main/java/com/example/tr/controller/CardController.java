@@ -41,7 +41,15 @@ public class CardController {
      */
     @PostMapping("/pay")
     public ResponseEntity<PaymentResponse> pay(@RequestBody PaymentRequest request) {
-        PaymentResponse response = paymentService.processPayment(request);
-        return ResponseEntity.ok(response);
+        try{
+            PaymentResponse response = paymentService.processPayment(request);
+            return ResponseEntity.ok(response);
+        }catch (RuntimeException e){
+            log.error("결제 실패: {}", e.getMessage());
+            PaymentResponse errorResponse = new PaymentResponse();
+            errorResponse.setSuccess(false);
+            errorResponse.setMessage(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
     }
 }

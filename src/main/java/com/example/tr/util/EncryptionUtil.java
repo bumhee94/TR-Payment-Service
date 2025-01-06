@@ -25,16 +25,4 @@ public class EncryptionUtil {
             throw new RuntimeException("암호화 실패", e);
         }
     }
-
-    // 복호화
-    public String decrypt(String encryptedData) {
-        try {
-            SecretKeySpec secretKey = new SecretKeySpec(KEY, ALGORITHM);
-            Cipher cipher = Cipher.getInstance(ALGORITHM);
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedData)));
-        } catch (Exception e) {
-            throw new RuntimeException("복호화 실패", e);
-        }
-    }
 }

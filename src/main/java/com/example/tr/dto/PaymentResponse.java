@@ -4,7 +4,6 @@ public class PaymentResponse {
     private boolean success;
     private String message;
 
-    // Constructors, Getters, Setters
     public PaymentResponse() {}
 
     public PaymentResponse(boolean success, String message) {

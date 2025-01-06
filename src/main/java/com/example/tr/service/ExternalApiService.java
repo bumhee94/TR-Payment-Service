@@ -61,7 +61,7 @@ public class ExternalApiService {
         try {
             PaymentResponse response = restTemplate.postForObject(
                     ISSUER_URL,
-                    new PaymentRequest(request.getAmount(), tokenValue),
+                    new PaymentRequest(request.getRefId(), tokenValue, request.getAmount()),
                     PaymentResponse.class
             );
             log.info("Issuer로부터 결제 응답: Response={}", response);
