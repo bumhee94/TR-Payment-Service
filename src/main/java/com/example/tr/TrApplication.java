@@ -20,7 +20,7 @@ public class TrApplication {
 
     private static void initializeOpenTelemetry() {
         OtlpGrpcSpanExporter spanExporter = OtlpGrpcSpanExporter.builder()
-                .setEndpoint("http://localhost:4317") // Tempo 서버 엔드포인트
+                .setEndpoint("http://localhost:4320") // Tempo 서버 엔드포인트
                 .build();
 
         SdkTracerProvider tracerProvider = SdkTracerProvider.builder()

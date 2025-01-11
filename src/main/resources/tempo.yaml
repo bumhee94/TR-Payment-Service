@@ -1,12 +1,8 @@
 server:
   http_listen_port: 3100
-  grpc_listen_port: 4321
+  grpc_listen_port: 4317
   http_listen_address: 0.0.0.0
   grpc_listen_address: 0.0.0.0
-  http_server_read_timeout: 30s
-  http_server_write_timeout: 30s
-
-
 
 storage:
   trace:
@@ -14,17 +10,21 @@ storage:
     local:
       path: /var/lib/tempo/traces
 
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc: {}
+        http: {}
+
 compactor:
   compaction:
     compacted_block_retention: 48h
 
 ingester:
-  trace_idle_period: 300000000000 # 5m in nanoseconds
-  max_block_bytes: 10485760 # 10MB in bytes
+  trace_idle_period: 300000000000
+  max_block_bytes: 10485760
 
-distributor:
-  receivers:
-    otlp:
-      protocols:
-        grpc:
-        http:
+metrics_generator:
+  storage:
+    path: /var/lib/tempo/metrics

@@ -4,9 +4,19 @@ services:
     image: grafana/tempo:latest
     container_name: tempo
     ports:
-      - "4321:4321" # OpenTelemetry 수집용 gRPC 포트
-      - "3100:3100" # Grafana Tempo HTTP API
+      - "3100:3100"
+      - "4317:4317"
+      - "4318:4318"
     volumes:
       - ./tempo-data:/var/lib/tempo
       - ./tempo.yaml:/etc/tempo/tempo.yaml
     command: ["-config.file=/etc/tempo/tempo.yaml"]
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+networks:
+  default:
+    name: tempo-network

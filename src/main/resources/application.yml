@@ -26,4 +26,4 @@ management:
       enabled: true
       exporter:
         otlp:
-          endpoint: http://localhost:4317 # Grafana Tempo가 수신하는 OpenTelemetry 포트
+          endpoint: http://localhost:4320 # Grafana Tempo가 수신하는 OpenTelemetry 포트
