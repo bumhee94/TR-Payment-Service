@@ -29,10 +29,11 @@ public class CardService {
     public String registerCard(CardRegisterRequest request) {
         log.info("[CardService][registerCard] - 카드 등록 요청 처리 시작: userId={}", request.getUserId());
 
-        // 카드 번호 암호화
+        // 카드 번호 AES암호화
         String encryptedCardNumber = encryptionUtil.encrypt(request.getCardNumber());
         log.debug("[CardService][registerCard] - 카드 번호 암호화 완료");
 
+        // BusinessException - 글로벌 이셉션 GlobalExceptionHandler 정의
         // 중복 카드 번호 검증
         if (cardRepository.existsByCardNumber(encryptedCardNumber)) {
             log.warn("[CardService][registerCard] - 중복된 카드 번호 발견");

@@ -35,7 +35,7 @@ public class CardController {
      * 결제 요청 API
      */
     @PostMapping("/pay")
-    public ResponseEntity<PaymentResponse> pay(@Valid @RequestBody PaymentRequest request) {
+    public ResponseEntity<PaymentResponse> pay(@RequestBody PaymentRequest request) {
         log.info("[CardController][pay] - 결제 요청 수신: refId={}, amount={}", request.getRefId(), request.getAmount());
         PaymentResponse response = paymentService.processPayment(request);
         log.info("[CardController][pay] - 결제 요청 처리 완료: response={}", response);

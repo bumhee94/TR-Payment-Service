@@ -15,6 +15,7 @@ public class ExternalApiService {
     private static final String TSP_TOKEN_URL = "http://localhost:8081/api/tsp/generate-token";
     private static final String ISSUER_URL = "http://localhost:8082/api/issuer/process-payment";
 
+    // 외부통신 이셉션 HttpClientErrorException - 글로벌 이셉션 GlobalExceptionHandler 정의
     public String postToTspRefId(String encryptCardNumber) {
         log.info("[TR][ExternalApiService][postToTspRefId] - TSP로 참조 ID 요청 시작");
         String response = restTemplate.postForObject(TSP_REF_URL, encryptCardNumber, String.class);

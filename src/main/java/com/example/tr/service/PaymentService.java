@@ -2,6 +2,7 @@ package com.example.tr.service;
 
 import com.example.tr.dto.PaymentRequest;
 import com.example.tr.dto.PaymentResponse;
+import com.example.tr.exception.BusinessException;
 import com.example.tr.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +28,7 @@ public class PaymentService {
         // 1. refId 유효성 검증
         if (!cardRepository.existsByRefId(request.getRefId())) {
             log.warn("[PaymentService][processPayment] - 유효하지 않은 refId: {}", request.getRefId());
-            throw new IllegalArgumentException("유효하지 않은 참조 ID입니다: " + request.getRefId());
+            throw new BusinessException("유효하지 않은 참조 ID입니다: " + request.getRefId());
         }
 
         // 2. TSP로 토큰 요청
