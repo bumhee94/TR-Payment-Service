@@ -7,6 +7,7 @@ public class LuhnValidator implements ConstraintValidator<ValidCardNumber, Strin
 
     @Override
     public boolean isValid(String cardNumber, ConstraintValidatorContext context) {
+        cardNumber = cardNumber.replaceAll("[\\s-]", "");
         if (cardNumber == null || !cardNumber.matches("\\d+")) {
             return false;
         }
