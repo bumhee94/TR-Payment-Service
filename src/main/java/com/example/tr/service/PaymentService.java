@@ -23,7 +23,7 @@ public class PaymentService {
      * @return 결제 응답 데이터
      */
     public PaymentResponse processPayment(PaymentRequest request) {
-        log.info("[PaymentService][processPayment] - 결제 요청 처리 시작: refId={}, amount={}", request.getRefId(), request.getAmount());
+        log.info("[PaymentService][processPayment] - 결제 요청 처리 시작: refId={}, amount={}, userId={}", request.getRefId(), request.getAmount(), request.getUserId());
 
         // 1. refId 유효성 검증
         if (!cardRepository.existsByRefId(request.getRefId())) {

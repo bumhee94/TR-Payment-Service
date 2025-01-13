@@ -34,7 +34,7 @@ public class ExternalApiService {
         log.info("[TR][ExternalApiService][postToIssuer] - Issuer로 결제 요청 시작: TokenValue={}, Payload={}", tokenValue, request);
         PaymentResponse response = restTemplate.postForObject(
                 ISSUER_URL,
-                new PaymentRequest(request.getRefId(), tokenValue, request.getAmount()),
+                new PaymentRequest(request.getRefId(), tokenValue, request.getAmount(), request.getUserId()),
                 PaymentResponse.class
         );
         log.info("[TR][ExternalApiService][postToIssuer] - Issuer로부터 결제 응답 수신: response={}", response);

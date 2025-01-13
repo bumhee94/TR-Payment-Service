@@ -25,6 +25,7 @@ public class CardController {
      */
     @PostMapping("/register-card")
     public ResponseEntity<String> registerCard(@Valid @RequestBody CardRegisterRequest request) {
+        // 사용자CI는 임의로한다.
         log.info("[CardController][registerCard] - 카드 등록 요청 수신: userId={}", request.getUserId());
         String refId = cardService.registerCard(request);
         log.info("[CardController][registerCard] - 카드 등록 성공: refId={}", refId);
@@ -36,6 +37,7 @@ public class CardController {
      */
     @PostMapping("/pay")
     public ResponseEntity<PaymentResponse> pay(@Valid @RequestBody PaymentRequest request) {
+        // 사용자CI는 임의로한다.
         log.info("[CardController][pay] - 결제 요청 수신: refId={}, amount={}", request.getRefId(), request.getAmount());
         PaymentResponse response = paymentService.processPayment(request);
         log.info("[CardController][pay] - 결제 요청 처리 완료: response={}", response);

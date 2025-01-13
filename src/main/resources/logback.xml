@@ -23,7 +23,7 @@
 <!--    </appender>-->
 
     <appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
-        <webhookUri>https://hooks.slack.com/services/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</webhookUri>
+        <webhookUri>https://hooks.slack.com/services/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</webhookUri>
         <channel><username>로그-출력</username></channel>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%date %-5level - %msg%n</pattern>

@@ -12,5 +12,6 @@ public class PaymentRequest {
     private final String tokenValue;
     @ValidAmount //0원 및 음수금액 유효성검사 어노테이션
     private final double amount;
+    private final String userId;
 }
 

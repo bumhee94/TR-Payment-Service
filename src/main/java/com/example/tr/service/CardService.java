@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -55,7 +57,12 @@ public class CardService {
                 .cardNumber(encryptedCardNumber)
                 .userId(request.getUserId())
                 .refId(refId)
+                .createId(request.getUserId()) // 등록자 ID
+                .createDt(LocalDateTime.now()) // 현재 시간으로 등록일 설정
+                .updateId(request.getUserId()) // 수정자 ID 초기값은 등록자와 동일
+                .updateDt(LocalDateTime.now()) // 수정 시간 초기값은 등록 시간과 동일
                 .build();
+
         cardRepository.save(card);
         log.info("[CardService][registerCard] - 카드 등록 성공: refId={}", refId);
 
